@@ -82,23 +82,25 @@ public class MediaItem {
 		if (this.onLoan) {
 			System.out.println("Error, this item is already loaned out");
 		} else {
-			setIsOnLoan(true);
-			setLoanedTo(name);
-			setDateLoaned(date);
-			// this.onLoan = true;
-			// this.loanedTo = name;
-			// this.dateLoaned = date;
+			//I commented out the setter methods and directly set the data fields. 
+			//setIsOnLoan(true);
+			//setLoanedTo(name);
+			//setDateLoaned(date);
+			this.onLoan = true;
+			this.loanedTo = name;
+			this.dateLoaned = date;
 		}
 	}
 
 	void markReturned() {
 		if (this.onLoan) {
-			setIsOnLoan(false);
-			setLoanedTo(null);
-			setDateLoaned(null);
-			// this.onLoan = false;
-			// this.loanedTo = null;
-			// this.dateLoaned = null;
+			//I commented out these setter methods and directly set the data fields.
+			//setIsOnLoan(false);
+			//setLoanedTo(null);
+			//setDateLoaned(null);
+			this.onLoan = false;
+			this.loanedTo = null;
+			this.dateLoaned = null;
 		} else {
 			System.out.println("Error: this item is not currently loaned out");
 		}
