@@ -1,6 +1,6 @@
 /* Westley W Williams
  *  CIS 2212-800 Java I FlexPace
- *  Assignment - Midterm Project
+ *  Assignment - Midterm Project - Personal Lending Library
  *  Finished February 5th, 2021
  */
 package midterm;
@@ -9,13 +9,11 @@ import java.util.Scanner;
 
 //library class which contains the main method
 public class Library {
-	int numberOfItems;// this will go up or down based on the number of items stored by the user
-	private final int LIBRARY_SIZE = 100;// This is the size of the library itself
-	MediaItem[] items = new MediaItem[LIBRARY_SIZE];// creation of the items array object from the MediaItem class. It
+	private int numberOfItems;// this will go up or down based on the number of items stored by the user
+	private static final int LIBRARY_SIZE = 100;// This is the size of the library itself
+	private MediaItem[] items = new MediaItem[LIBRARY_SIZE];// creation of the items array object from the MediaItem class. It
 	// holds instances of the MediaItem class
-	private final String menuOfOptions = "" + "1. Add new item\r\n" + "2. Mark an item as on loan\r\n"
-			+ "3. List all items\r\n" + "4. Mark an item as returned\r\n" + "5. Quit\r\n";// simple string which will be
-	// used later
+	
 
 	// main method
 	public static void main(String[] args) {
@@ -40,11 +38,15 @@ public class Library {
 			case 2:
 				System.out.println("Which item (enter the title)?");// query of user
 				title = mainScanner.nextLine();// user provides the title
-				System.out.println("Who are you loaning it to?");// query the user
-				String name = mainScanner.nextLine();// user provides name of media item
-				System.out.println("When did you loan it to them?");// another query
-				String date = mainScanner.nextLine();// we get the date the media item was loaned
-				libraryObject.markItemOnLoan(title, name, date);// program marks the item as loaned
+				if (libraryObject.checkInLibrary(title) == 1) {
+					System.out.println("Who are you loaning it to?");// query the user
+					String name = mainScanner.nextLine();// user provides name of media item
+					System.out.println("When did you loan it to them?");// another query
+					String date = mainScanner.nextLine();// we get the date the media item was loaned
+					libraryObject.markItemOnLoan(title, name, date);// program marks the item as loaned
+				} else {
+
+				}
 				break;
 			case 3:// in case 3, we are looking to list the items of the library
 				String[] stringArray = libraryObject.listAllItems();
@@ -77,6 +79,8 @@ public class Library {
 
 	// new method
 	int displayMenu() {
+		final String menuOfOptions = "" + "1. Add new item\r\n" + "2. Mark an item as on loan\r\n"
+				+ "3. List all items\r\n" + "4. Mark an item as returned\r\n" + "5. Quit\r\n";
 		// new scanner for this method should help me avoid issues
 		Scanner newScanner = new Scanner(System.in);
 		System.out.println(menuOfOptions);// print the menu for the user
@@ -88,6 +92,27 @@ public class Library {
 
 	void addNewItem(String title, String format) {
 		items[numberOfItems++] = new MediaItem(title, format);
+	}// end of method
+
+	// new method
+	int checkInLibrary(String title) {
+		// loop through the item list
+		for (int i = 0; i < numberOfItems; i++) {
+			// if the input title matches the stored title, then we know it's in the library
+			if (title.equals(items[i].getTitle())) {
+				// go back to the main method and continue querying the user
+				return 1;
+			} else if (i == (numberOfItems - 1) && !title.equals(items[numberOfItems - 1].getTitle())) {
+				// unable to find the title in the library
+				System.out.println("I'm sorry, I couldn't find this item in the library");
+				return -1;
+			} else {
+				// nothing needed in here
+			}
+
+		}
+		return 0;
+
 	}// end of method
 
 	// new method

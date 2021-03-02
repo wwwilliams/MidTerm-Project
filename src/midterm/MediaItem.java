@@ -9,8 +9,9 @@ public class MediaItem {
 	private String loanedTo;// this data field tells us who the media item is loaned to
 	private String dateLoaned;// this tells us the date the item was loaned.
 
-	//first constructor
-	//set the variables to null, except for onLoan, which is set to false by default
+	// first constructor
+	// set the variables to null, except for onLoan, which is set to false by
+	// default
 	MediaItem() {
 		this.title = null;
 		this.format = null;
@@ -19,65 +20,65 @@ public class MediaItem {
 		this.dateLoaned = null;
 	}
 
-	//another constructor with two parameters, title and format
+	// another constructor with two parameters, title and format
 	MediaItem(String title, String format) {
-		this.title = title;
-		this.format = format;
-		this.onLoan = false;
+		this.title = title;// title of the media item
+		this.format = format;// format of the media item
+		this.onLoan = false;// title is not loaned out
 	}
 
-	//getter and setter methods below
-	//we want to get the title of the media item
+	// getter and setter methods below
+	// we want to get the title of the media item
 	public String getTitle() {
 		return this.title;
 	}
 
-	//set the title of the media item
+	// set the title of the media item
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	//get the format of the media item. Is it a CD or a DVD, for example.
+	// get the format of the media item. Is it a CD or a DVD, for example.
 	public String getFormat() {
 		return this.format;
 	}
 
-	//set the format
+	// set the format
 	public void setFormat(String format) {
 		this.format = format;
 	}
 
-	//is it loaned out or not?
+	// is it loaned out or not?
 	public boolean isOnLoan() {
 		return this.onLoan;
 	}
 
-	//set whether it has been loaned out or not.
+	// set whether it has been loaned out or not.
 	public void setIsOnLoan(boolean onLoan) {
 		this.onLoan = onLoan;
 	}
 
-	//get who the media item was loaned to
+	// get who the media item was loaned to
 	public String getLoanedTo() {
 		return this.loanedTo;
 	}
 
-	//set who the media item was loaned to
+	// set who the media item was loaned to
 	public void setLoanedTo(String loanedTo) {
 		this.loanedTo = loanedTo;
 	}
 
-	//get the date that this media item was loaned on
+	// get the date that this media item was loaned on
 	public String getDateLoaned() {
 		return this.dateLoaned;
 	}
 
-	//set the date that the media item was loaned on
+	// set the date that the media item was loaned on
 	public void setDateLoaned(String dateLoaned) {
 		this.dateLoaned = dateLoaned;
 	}
 
-	public void markOnLoan(String name, String date) {
+	void markOnLoan(String name, String date) {
 		if (this.onLoan) {
 			System.out.println("Error, this item is already loaned out");
 		} else {
@@ -90,7 +91,7 @@ public class MediaItem {
 		}
 	}
 
-	public void markReturned() {
+	void markReturned() {
 		if (this.onLoan) {
 			setIsOnLoan(false);
 			setLoanedTo(null);
